@@ -1,0 +1,30 @@
+version: '3.2'
+
+services:
+
+  mongodb:
+    container_name: rezervasyon_mongodb2-nodejs
+    image: mongo:5.0
+    volumes:
+     - rezervasyon_mongodb2:/data/db
+    ports:
+      - 30019:27017
+    environment:
+      MONGO_SU_USERNAME:
+      MONGO_USERNAME:
+      MONGO_DATABASE:
+      SECRET_NAME:
+    networks:
+      - testend
+
+  composer:
+    image: composer:1.9
+    command: ["composer", "install"]
+    volumes:
+      - .:/app
+      
+volumes:
+  rezervasyon_mongodb2:
+
+networks:
+  testend:
